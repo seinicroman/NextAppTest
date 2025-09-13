@@ -110,12 +110,20 @@ fun MyKeyboardScreenContent(
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
+                    items(2) { Box(modifier = Modifier.height(16.dp)) }
                     items(themes, key = { it.id }) { theme ->
                         ThemeItem(
                             theme = theme,
                             onClick = { handleEvent(MyKeyboardEvent.ThemeClicked(theme.id)) },
                         )
                     }
+                    items(
+                        if (themes.size % 2 == 0) {
+                            2
+                        } else {
+                            1
+                        }
+                    ) { Box(modifier = Modifier.height(16.dp)) }
                 }
                 AddBannerItem(modifier = Modifier)
             }
